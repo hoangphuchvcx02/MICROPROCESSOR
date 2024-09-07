@@ -1,0 +1,42 @@
+
+.ORG 0x00
+LDI	R16, 0x01
+OUT DDRA, R16 
+
+LOOP:
+	SBI		PORTA, 0
+	RCALL 	DL_1MSEC    ;Call the delay function for 1s
+	CBI 	PORTA, 0
+	RCALL 	DL_1MSEC
+	RJMP 	LOOP
+
+DL_1SEC: 
+	LDI 	R18, 10
+C: 	RCALL 	DL_100MSEC ;Call the delay function for 100ms
+	DEC 	R18
+	BRNE 	C
+	RET
+
+DL_100MSEC:
+	LDI 	R17, 10
+B: 	RCALL 	DL_10MSEC ;;Call the d	elay function for 10ms
+	DEC 	R17
+	BRNE 	B
+	RET
+
+DL_10MSEC:
+	LDI 	R16, 10
+A: 	RCALL 	DL_1MSEC
+	DEC 	R16
+	BRNE 	A
+	RET
+
+DL_1MSEC:
+	LDI R21, 80
+LP2: 	LDI R20, 25
+LP1: 	NOP
+	DEC R20
+	BRNE LP1
+	DEC R21
+	BRNE LP2
+	RET
