@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_1\lab1_1_4\lab1_1_4\lab1_1_4\main.asm Sat Sep 07 16:43:33 2024
+AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_2\lab1_2_3\lab1_2_3\lab1_2_3\main.asm Thu Sep 12 07:46:14 2024
 
 
 EQU  SIGNATURE_000 0000001e
@@ -826,4 +826,21 @@ EQU  URXC1addr    00000038
 EQU  UDRE1addr    0000003a
 EQU  UTXC1addr    0000003c
 EQU  INT_VECTORS_SIZE 0000003e
-CSEG start        00000005
+DEF  shiftData    r20
+EQU  clearSignalPort 00000005
+EQU  clearSignalPin 00000003
+EQU  shiftClockPort 00000005
+EQU  shiftClockPin 00000002
+EQU  latchPort    00000005
+EQU  latchPin     00000001
+EQU  shiftDataPort 00000005
+EQU  shiftDataPin 00000000
+CSEG main         00000000
+CSEG initport     00000030
+CSEG cleardata    00000034
+CSEG shiftoutdata 00000037
+CSEG DELAY_US     00000046
+CSEG stop         00000009
+CSEG shiftloop    00000039
+CSEG L1           00000048
+CSEG L2           00000049

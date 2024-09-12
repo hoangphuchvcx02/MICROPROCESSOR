@@ -16,6 +16,6 @@ start:
 	LSR R17
 
 	ANDI R16, 0x0F
-	MULS R16, R17
+	MULS R16, R17Z
 	OUT PORTB, R0
 	rjmp start    	
