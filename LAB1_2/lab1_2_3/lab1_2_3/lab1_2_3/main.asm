@@ -7,36 +7,29 @@
 .equ latchPin = 1 ; Set latch pin to pin 0 of PORTB
 .equ shiftDataPort = PORTB ; Set shift data port to PORTB
 .equ shiftDataPin = 0 ; Set shift data pin to pin 3 of PORTB
-
+.def temp = r21
 main:
 call initport
-ldi shiftData,0x01
 call cleardata
-call shiftoutdata
-call DELAY_US
-stop:
-ldi shiftData,0x03
-call shiftoutdata
-call DELAY_US
-ldi shiftData,0x07
-call DELAY_US
-call shiftoutdata
-ldi shiftData,0x0F
-call shiftoutdata
-call DELAY_US
-ldi shiftData,0x1F
-call shiftoutdata
-call DELAY_US
-ldi shiftData,0x3F
-call shiftoutdata
-call DELAY_US
-ldi shiftData,0x7F
-call shiftoutdata
-call DELAY_US
-ldi shiftData,0xFD
-call shiftoutdata
-call DELAY_US
-call cleardata
+
+ldi temp, 0x01
+LOOP:
+    call DELAY_US
+    mov shiftData, temp
+    call shiftoutdata
+    lsl temp
+	inc temp
+    cpi temp, 0xFF
+    brne LOOP
+
+LOOP2:
+	call DELAY_US
+    mov shiftData, temp
+    call shiftoutdata
+    lsl temp
+	//inc temp
+	cpi temp, 0x00
+	brne LOOP2
 
 
 jmp main

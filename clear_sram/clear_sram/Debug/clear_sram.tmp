@@ -1,0 +1,28 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega324PA"</DEVICE>
+ <WORKING_DIR>D:\MICROPROCESSOR\MICROPROCESSOR\clear_sram\clear_sram\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>D:\MICROPROCESSOR\MICROPROCESSOR\clear_sram\clear_sram\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324PAdef.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>D:\MICROPROCESSOR\MICROPROCESSOR\clear_sram\clear_sram\Debug\clear_sram.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>clear_sram.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>clear_sram.map</FILE>
+  <FILE>clear_sram.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <LP><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\clear_sram\clear_sram\main.asm</FILE><LINE>10</LINE></LP>
+  <END><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\clear_sram\clear_sram\main.asm</FILE><LINE>18</LINE></END>
+ </LABELS>
+</ASSEMBLER_INFO>
