@@ -1,10 +1,10 @@
 
-AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\clear_sram\clear_sram\main.asm Thu Sep 12 08:14:53 2024
+AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\clear_sram\clear_sram\main.asm Mon Sep 16 18:30:22 2024
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324PAdef.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324PAdef.inc'
                                  
-                                 ; Kh?i t?o thanh ghi v?i d? li?u c?n ghi
+                                 //set sram 0x01FA to 0x0222 
                                  
                                  ;***** Created: 2011-02-09 12:03 ******* Source: ATmega324PA.xml *********
                                  ;*************************************************************************
@@ -1151,24 +1151,22 @@ AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\clear_sram\clear_sram\main.a
                                  
                                  ; ***** END OF FILE ******************************************************
                                  
-000000 ea0a                      LDI R16, 0xAA     ; Giá tr? c?n ghi
-000001 e0c0                      LDI YL, 0x00      ; Kh?i t?o con tr? Y v?i giá tr? th?p
-000002 e0d1                      LDI YH, 0x01      ; Kh?i t?o con tr? Y v?i giá tr? cao
+000000 ea0a                      LDI R16, 0xAA
+000001 efca                      LDI YL, 0xFA
+000002 e0d1                      LDI YH, 0x01
+000003 e022                      LDI R18, 2
                                  
-                                 ; Kh?i t?o s? l?n l?p cho ??n khi ??a ch? 0x02FF (511 l?n)
-000003 e010                      LDI R17, 0x00     ; ??t giá tr? cao c?a R17 thành 0
-000004 e022                      LDI R18, 0x02     ; ??t giá tr? cao c?a R18 thành 2
-                                 
-                                 LP:
-000005 9309                          ST Y+, R16    ; L?u giá tr? c?a R16 vào ??a ch? mà Y tr? t?i, sau ?ó t?ng Y
-000006 9513                          INC R17   ; T?ng giá tr? c?a R17 (R17 + 1)
-000007 3f1f                          CPI R17, 0xFF ; So sánh giá tr? c?a R17 v?i 0xFF
-000008 f7e1                          BRNE LP       ; N?u R17 ch?a ??t 0xFF, ti?p t?c l?p
-000009 3022                          CPI R18, 0x02 ; So sánh giá tr? c?a R18 v?i 0x02
-00000a f7d1                          BRNE LP       ; N?u R18 ch?a ??t 0x02, ti?p t?c l?p
-                                 
-                                 END: 
-00000b cfff                          RJMP END      ; K?t thúc ch??ng trình và nh?y ??n chính nó
+                                 LP2:
+000004 e114                      	LDI R17, 20	
+                                 	LP: 
+000005 9309                      		ST Y+, R16
+000006 951a                      		DEC R17
+000007 f7e9                      		BRNE LP
+000008 952a                      	DEC R18
+000009 f7d1                      	BRNE LP2
+00000a 9309                      	ST Y+, R16
+                                 END:
+00000b 940c 000b                 	JMP END
 
 
 RESOURCE USE INFORMATION
@@ -1186,9 +1184,9 @@ counted separately from r26..r31 here.
 .dseg memory usage only counts static data declared with .byte
 
 "ATmega324PA" register use summary:
-x  :   0 y  :   1 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
+x  :   0 y  :   2 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:   2 r17:   3 r18:   2 r19:   0 r20:   0 
+r13:   0 r14:   0 r15:   0 r16:   3 r17:   2 r18:   2 r19:   0 r20:   0 
 r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   1 
 r29:   1 r30:   0 r31:   0 
 Registers used: 6 out of 35 (17.1%)
@@ -1202,23 +1200,23 @@ brne  :   2 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0
 brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   0 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
-cpi   :   2 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   1 jmp   :   0 
+cpi   :   0 cpse  :   0 dec   :   2 eor   :   0 fmul  :   0 fmuls :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   0 jmp   :   1 
 ld    :   0 ldd   :   0 ldi   :   5 lds   :   0 lpm   :   0 lsl   :   0 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
 neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   0 pop   :   0 
-push  :   0 rcall :   0 ret   :   0 reti  :   0 rjmp  :   1 rol   :   0 
+push  :   0 rcall :   0 ret   :   0 reti  :   0 rjmp  :   0 rol   :   0 
 ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   0 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
-sez   :   0 sleep :   0 spm   :   0 st    :   1 std   :   0 sts   :   0 
+sez   :   0 sleep :   0 spm   :   0 st    :   2 std   :   0 sts   :   0 
 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 6 out of 113 (5.3%)
+Instructions used: 5 out of 113 (4.4%)
 
 "ATmega324PA" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000018     24      0     24   32768   0.1%
+[.cseg] 0x000000 0x00001a     26      0     26   32768   0.1%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 

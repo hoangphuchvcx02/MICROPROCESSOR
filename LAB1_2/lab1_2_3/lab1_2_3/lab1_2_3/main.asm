@@ -14,7 +14,7 @@ call cleardata
 
 ldi temp, 0x01
 LOOP:
-    call DELAY_US
+    //call DELAY_US
     mov shiftData, temp
     call shiftoutdata
     lsl temp
@@ -23,7 +23,7 @@ LOOP:
     brne LOOP
 
 LOOP2:
-	call DELAY_US
+	//call DELAY_US
     mov shiftData, temp
     call shiftoutdata
     lsl temp
@@ -52,6 +52,7 @@ cleardata:
 
 shiftloop:
 	sbrc shiftData, 7 ; Check if the MSB of shiftData is 1
+	//call delay_us
 	sbi shiftDataPort, shiftDataPin ; Set shift data pin to high
 	sbi shiftClockPort, shiftClockPin ; Set shift clock pin to high
 	lsl shiftData ; Shift left
@@ -63,10 +64,11 @@ shiftloop:
 	; Latch data
 	sbi latchPort, latchPin ; Set latch pin to high
 	cbi latchPort, latchPin ; Set latch pin to low
+	call delay_us
 	ret
 
-DELAY_US: MOV R15,R16 ;1MC n?p data cho R15
-LDI R16,200 ;1MC s? d?ng R16
+DELAY_US: LDI R16,255 ;1MC s? d?ng R16
+MOV R15,R16 ;1MC n?p data cho R15
 L1: MOV R14,R16 ;1MC n?p data cho R14
 L2: DEC R14 ;1MC
 NOP ;1MC
@@ -74,3 +76,5 @@ BRNE L2 ;2/1MC
 DEC R15 ;1MC
 BRNE L1 ;2/1MC
 RET ;4MC
+
+

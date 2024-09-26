@@ -1,0 +1,61 @@
+; Multiplies two 16-bit unsigned numbers
+; Input:
+;   r18:r19 - first 16-bit number (multiplier)
+;   r20:r21 - second 16-bit number (multiplicand)
+; Output:
+;   r22:r23:r24:r25 - 32-bit result (r25:r24:r23:r22)
+
+.macro clr_32bit
+    clr r22
+    clr r23
+    clr r24
+    clr r25
+.endm
+
+.macro add_32bit
+    add r22, r0
+    adc r23, r1
+    adc r24, r2
+    adc r25, r3
+.endm
+
+start:
+    ; Load values into registers
+    ldi r18, 0x12 ; high byte of first number
+    ldi r19, 0x34 ; low byte of first number
+    ldi r20, 0x56 ; high byte of second number
+    ldi r21, 0x78 ; low byte of second number
+
+    ; Initialize result registers
+    clr_32bit
+
+    ; Multiply low bytes
+    mov r0, r19
+    mov r1, r21
+    mul r0, r1
+    mov r22, r0
+    mov r23, r1
+
+    ; Multiply cross terms and add
+    mov r0, r19
+    mov r1, r20
+    mul r0, r1
+    add r23, r0
+    adc r24, r1
+
+    mov r0, r18
+    mov r1, r21
+    mul r0, r1
+    add r23, r0
+    adc r24, r1
+
+    ; Multiply high bytes
+    mov r0, r18
+    mov r1, r20
+    mul r0, r1
+    add r24, r0
+    adc r25, r1
+
+    ; End of program (infinite loop)
+    nop
+    rjmp start

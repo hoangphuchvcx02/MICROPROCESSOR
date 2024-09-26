@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_2\lab1_2_3\lab1_2_3\lab1_2_3\main.asm Thu Sep 12 10:53:53 2024
+AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_2\lab1_2_3\lab1_2_3\lab1_2_3\main.asm Thu Sep 12 11:34:56 2024
 
 
 EQU  SIGNATURE_000 0000001e
@@ -837,12 +837,12 @@ EQU  shiftDataPort 00000005
 EQU  shiftDataPin 00000000
 DEF  temp         r21
 CSEG main         00000000
-CSEG initport     00000018
-CSEG cleardata    0000001c
+CSEG initport     00000014
+CSEG cleardata    00000018
 CSEG LOOP         00000005
-CSEG DELAY_US     0000002e
-CSEG shiftoutdata 0000001f
-CSEG LOOP2        0000000e
-CSEG shiftloop    00000021
-CSEG L1           00000030
-CSEG L2           00000031
+CSEG shiftoutdata 0000001b
+CSEG LOOP2        0000000c
+CSEG shiftloop    0000001d
+CSEG delay_us     0000002c
+CSEG L1           0000002e
+CSEG L2           0000002f

@@ -1,0 +1,31 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega324PA"</DEVICE>
+ <WORKING_DIR>D:\MICROPROCESSOR\MICROPROCESSOR\demo\delay\delay\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\delay\delay\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324PAdef.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\delay\delay\Debug\delay.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>delay.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>delay.map</FILE>
+  <FILE>delay.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <setup><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\delay\delay\main.asm</FILE><LINE>9</LINE></setup>
+  <loop><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\delay\delay\main.asm</FILE><LINE>13</LINE></loop>
+  <delay><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\delay\delay\main.asm</FILE><LINE>25</LINE></delay>
+  <time_loop2><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\delay\delay\main.asm</FILE><LINE>27</LINE></time_loop2>
+  <time_loop><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\delay\delay\main.asm</FILE><LINE>29</LINE></time_loop>
+ </LABELS>
+</ASSEMBLER_INFO>

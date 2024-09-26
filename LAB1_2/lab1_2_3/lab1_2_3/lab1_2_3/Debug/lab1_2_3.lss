@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_2\lab1_2_3\lab1_2_3\lab1_2_3\main.asm Thu Sep 12 10:53:53 2024
+AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_2\lab1_2_3\lab1_2_3\lab1_2_3\main.asm Thu Sep 12 11:34:56 2024
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324PAdef.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324PAdef.inc'
@@ -1161,70 +1161,75 @@ AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_2\lab1_2_3\lab1_2_3\lab
                                  .equ shiftDataPin = 0 ; Set shift data pin to pin 3 of PORTB
                                  .def temp = r21
                                  main:
-000000 940e 0018                 call initport
-000002 940e 001c                 call cleardata
+000000 940e 0014                 call initport
+000002 940e 0018                 call cleardata
                                  
 000004 e051                      ldi temp, 0x01
                                  LOOP:
-000005 940e 002e                     call DELAY_US
-000007 2f45                          mov shiftData, temp
-000008 940e 001f                     call shiftoutdata
-00000a 0f55                          lsl temp
-00000b 9553                      	inc temp
-00000c 3f5f                          cpi temp, 0xFF
-00000d f7b9                          brne LOOP
+                                     //call DELAY_US
+000005 2f45                          mov shiftData, temp
+000006 940e 001b                     call shiftoutdata
+000008 0f55                          lsl temp
+000009 9553                      	inc temp
+00000a 3f5f                          cpi temp, 0xFF
+00000b f7c9                          brne LOOP
                                  
                                  LOOP2:
-00000e 940e 002e                 	call DELAY_US
-000010 2f45                          mov shiftData, temp
-000011 940e 001f                     call shiftoutdata
-000013 0f55                          lsl temp
+                                 	//call DELAY_US
+00000c 2f45                          mov shiftData, temp
+00000d 940e 001b                     call shiftoutdata
+00000f 0f55                          lsl temp
                                  	//inc temp
-000014 3050                      	cpi temp, 0x00
-000015 f7c1                      	brne LOOP2
+000010 3050                      	cpi temp, 0x00
+000011 f7d1                      	brne LOOP2
                                  
                                  
-000016 940c 0000                 jmp main
+000012 940c 0000                 jmp main
                                  
                                  ; Initialize ports as outputs
                                  initport:
-000018 e08f                      	ldi r24,(1<<clearSignalPin)|(1<<shiftClockPin)|(1<<latchPin)|(1<<shiftDataPin)
-000019 b984                      	out DDRB, r24 ; Set DDRB to output
-00001a 9508                      	ret
-00001b e545                      	ldi shiftData,0x55
+000014 e08f                      	ldi r24,(1<<clearSignalPin)|(1<<shiftClockPin)|(1<<latchPin)|(1<<shiftDataPin)
+000015 b984                      	out DDRB, r24 ; Set DDRB to output
+000016 9508                      	ret
+000017 e545                      	ldi shiftData,0x55
                                  cleardata:
-00001c 982b                      	cbi clearSignalPort, clearSignalPin ; Set clear signal pin to low
+000018 982b                      	cbi clearSignalPort, clearSignalPin ; Set clear signal pin to low
                                  	; Wait for a short time
-00001d 9a2b                      	sbi clearSignalPort, clearSignalPin ; Set clear signal pin to high
-00001e 9508                      	ret
+000019 9a2b                      	sbi clearSignalPort, clearSignalPin ; Set clear signal pin to high
+00001a 9508                      	ret
                                  	; Shift out data
                                  	shiftoutdata:
-00001f 982a                      	cbi shiftClockPort, shiftClockPin ;
-000020 e028                      	ldi r18, 8 ; Shift 8 bits
+00001b 982a                      	cbi shiftClockPort, shiftClockPin ;
+00001c e028                      	ldi r18, 8 ; Shift 8 bits
                                  
                                  shiftloop:
-000021 fd47                      	sbrc shiftData, 7 ; Check if the MSB of shiftData is 1
-000022 9a28                      	sbi shiftDataPort, shiftDataPin ; Set shift data pin to high
-000023 9a2a                      	sbi shiftClockPort, shiftClockPin ; Set shift clock pin to high
-000024 0f44                      	lsl shiftData ; Shift left
-000025 940e 002e                 	call delay_us
-000027 982a                      	cbi shiftClockPort, shiftClockPin ; Set shift clock pin to low
-000028 9828                      	cbi shiftDataPort, shiftDataPin ; Set shift data pin to low
-000029 952a                      	dec r18
-00002a f7b1                      	brne shiftloop
+00001d fd47                      	sbrc shiftData, 7 ; Check if the MSB of shiftData is 1
+                                 	//call delay_us
+00001e 9a28                      	sbi shiftDataPort, shiftDataPin ; Set shift data pin to high
+00001f 9a2a                      	sbi shiftClockPort, shiftClockPin ; Set shift clock pin to high
+000020 0f44                      	lsl shiftData ; Shift left
+000021 940e 002c                 	call delay_us
+000023 982a                      	cbi shiftClockPort, shiftClockPin ; Set shift clock pin to low
+000024 9828                      	cbi shiftDataPort, shiftDataPin ; Set shift data pin to low
+000025 952a                      	dec r18
+000026 f7b1                      	brne shiftloop
                                  	; Latch data
-00002b 9a29                      	sbi latchPort, latchPin ; Set latch pin to high
-00002c 9829                      	cbi latchPort, latchPin ; Set latch pin to low
-00002d 9508                      	ret
+000027 9a29                      	sbi latchPort, latchPin ; Set latch pin to high
+000028 9829                      	cbi latchPort, latchPin ; Set latch pin to low
+000029 940e 002c                 	call delay_us
+00002b 9508                      	ret
                                  
-00002e 2ef0                      DELAY_US: MOV R15,R16 ;1MC n?p data cho R15
-00002f ec08                      LDI R16,200 ;1MC s? d?ng R16
-000030 2ee0                      L1: MOV R14,R16 ;1MC n?p data cho R14
-000031 94ea                      L2: DEC R14 ;1MC
-000032 0000                      NOP ;1MC
-000033 f7e9                      BRNE L2 ;2/1MC
-000034 94fa                      DEC R15 ;1MC
-000035 f7d1                      BRNE L1 ;2/1MC
+00002c ef0f                      DELAY_US: LDI R16,255 ;1MC s? d?ng R16
+00002d 2ef0                      MOV R15,R16 ;1MC n?p data cho R15
+00002e 2ee0                      L1: MOV R14,R16 ;1MC n?p data cho R14
+00002f 94ea                      L2: DEC R14 ;1MC
+000030 0000                      NOP ;1MC
+000031 f7e9                      BRNE L2 ;2/1MC
+000032 94fa                      DEC R15 ;1MC
+000033 f7d1                      BRNE L1 ;2/1MC
+000034 9508                      RET ;4MC
+                                 
+                                 
 
 
 RESOURCE USE INFORMATION
@@ -1255,7 +1260,7 @@ andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0
 brcc  :   0 brcs  :   0 break :   0 breq  :   0 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
 brne  :   5 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
-brvs  :   0 bset  :   0 bst   :   0 call  :   7 cbi   :   5 cbr   :   0 
+brvs  :   0 bset  :   0 bst   :   0 call  :   6 cbi   :   5 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
 cpi   :   2 cpse  :   0 dec   :   3 eor   :   0 fmul  :   0 fmuls :   0 
@@ -1274,7 +1279,7 @@ Instructions used: 15 out of 113 (13.3%)
 "ATmega324PA" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x00006e    110      0    110   32768   0.3%
+[.cseg] 0x000000 0x00006a    106      0    106   32768   0.3%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 
