@@ -1,0 +1,35 @@
+//Write a program to generate a 64 us square wave using Timer 1 in CTC mode. 
+//Use pin OC0 as the output.
+
+//TH=TL= 32us
+.ORG 0
+RJMP MAIN .ORG 0X40
+MAIN: 
+	LDI R16,HIGH(RAMEND);đưa stack lên đỉnh SRAM
+	OUT SPH,R16
+	LDI R16,LOW(RAMEND)
+	OUT SPL,R16
+	LDI R16,0x08
+	OUT DDRB,R16
+	CBI PORTB,3
+	//END:
+	//RJMP END
+	
+
+	LDI R17,32
+	STS OCR1AL,R17;ghi byte thấp kênh A sau
+	LDI R17,0X00 ;Timer1 mode CTC4
+	STS TCCR1A,R17
+	LDI R17,0X0A ;Timer1 bắt đầu chạy, hệ số chia N=8
+	STS TCCR1B,R17
+ 
+WAIT: 
+	SBIS TIFR1,OCF1A ;chờ cờ OCF1A=1 báo kết quả so sánh kênh A
+	RJMP WAIT ;cờ OCF1A=0 tiếp tục chờ
+	SBI TIFR1,OCF1A ;OCF1A=1  xóa cờ OCF1A
+	IN R17,PORTB ;đọc Port
+	LDI R16,0x08
+	EOR R17,R16 ;đảo bit 
+	OUT PORTB,R17 ;xuất ra PortC
+	RJMP WAIT ;lặp vòng lại
+	

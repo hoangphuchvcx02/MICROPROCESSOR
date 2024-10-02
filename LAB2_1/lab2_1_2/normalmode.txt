@@ -1,0 +1,34 @@
+
+ //program to generate a 64 us square wave using Timer 0 in Normal mode. 
+ //Use pin OC0 as the output.
+.EQU OUTPORT = PORTB
+.EQU SETPORT = DDRB
+
+.ORG 0
+LDI R16, 8
+OUT SETPORT,R16 
+LDI R17,0
+OUT TCCR0B,R17 ;Timer0, mode NOR, ch?a ho?t ??ng
+OUT TCCR0B,R17
+
+START:
+	RCALL DELAY ;3MC
+	IN R17, OUTPORT
+	EOR R17,R16
+	OUT OUTPORT, R17
+	//RCALL DELAY
+	RJMP START ;2MC
+
+DELAY:
+	LDI R17,(-32) ;(1MC)
+	OUT TCNT0,R17 ;(1MC)
+	LDI R17,0X02 ;(1MC)
+	OUT TCCR0B,R17 ;(1MC) Timer0, mode NOR, N = 68
+	WAIT:
+	IN R17,TIFR0 ;(1MC)
+	SBRS R17,TOV0 ;(2/1MC)
+	RJMP WAIT ;(2MC)
+	OUT TIFR0,R17 ;(1MC)
+	RET
+
+
