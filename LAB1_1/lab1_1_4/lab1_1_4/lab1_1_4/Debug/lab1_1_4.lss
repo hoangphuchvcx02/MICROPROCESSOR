@@ -1,10 +1,10 @@
 
-AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_1\lab1_1_4\lab1_1_4\lab1_1_4\main.asm Sat Sep 07 16:43:33 2024
+AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_1\lab1_1_4\lab1_1_4\lab1_1_4\main.asm Tue Oct 22 08:31:52 2024
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324PAdef.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324PAdef.inc'
                                  
-                                 	LDI R16, 0x00  	
+                                  LDI R16, $00
                                  
                                  ;***** Created: 2011-02-09 12:03 ******* Source: ATmega324PA.xml *********
                                  ;*************************************************************************
@@ -1151,26 +1151,52 @@ AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_1\lab1_1_4\lab1_1_4\lab
                                  
                                  ; ***** END OF FILE ******************************************************
 000000 e000                      
-000001 b901                      	OUT DDRA, R16   //set input	
-                                  
-000002 ef0f                      	LDI R16, $FF  	
-000003 b902                      	OUT PORTA, R16	//pull up reg
-000004 b904                      	OUT DDRB, R16 	//set up
-                                  
-                                 start:
-000005 b100                      	IN R16, PINA
-000006 9500                      	COM R16  	
-000007 2f10                      	MOV	R17,R16
-000008 7f10                      	ANDI R17, 0xF0
-000009 9516                      	LSR R17
-00000a 9516                      	LSR R17	
-00000b 9516                      	LSR R17
-00000c 9516                      	LSR R17
+000001 b901                            OUT DDRA, R16
+000002 ef0f                            LDI R16, $FF
+000003 b902                            OUT PORTA, R16
                                  
-00000d 700f                      	ANDI R16, 0x0F
-00000e 0201                      	MULS R16, R17
-00000f b805                      	OUT PORTB, R0
-000010 cff4                      	rjmp start    	
+                                 
+000004 ef0f                            LDI R16, 0xFF
+000005 b904                            OUT DDRB, R16
+                                 
+                                 
+000006 e000                            LDI R16, $00
+000007 b905                            OUT PORTB, R16
+                                 
+                                 
+                                 ; STATUS INPUT
+                                 LOOP:
+000008 b100                      	IN R16, PINA
+000009 9500                      	COM R16
+                                 
+                                 
+00000a 2f10                      	MOV R17, R16
+00000b 7f00                      	ANDI R16, $F0		     ;4 BIT HIGH
+00000c 9502                      	SWAP R16
+                                 
+                                 
+00000d 2f20                      	MOV R18, R16
+00000e d007                      	RCALL EXTEND
+00000f 2f02                      	MOV R16, R18
+                                 
+                                 
+000010 701f                      	ANDI R17, $0F                ;4 BIT LOW
+                                 
+                                 
+000011 2f21                      	MOV R18, R17
+000012 d003                      	RCALL EXTEND
+                                 
+                                 
+000013 0201                      	MULS R16, R17
+000014 b805                      	OUT PORTB, R0
+000015 cff2                      	RJMP LOOP
+                                 
+                                 
+                                 EXTEND:
+000016 ff23                      	SBRS R18, 3
+000017 9508                      	RET
+000018 6f20                      	ORI R18, 0xF0
+000019 9508                      	RET
 
 
 RESOURCE USE INFORMATION
@@ -1190,10 +1216,10 @@ counted separately from r26..r31 here.
 "ATmega324PA" register use summary:
 x  :   0 y  :   0 z  :   0 r0 :   1 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:  10 r17:   7 r18:   0 r19:   0 r20:   0 
+r13:   0 r14:   0 r15:   0 r16:  16 r17:   4 r18:   5 r19:   0 r20:   0 
 r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
 r29:   0 r30:   0 r31:   0 
-Registers used: 3 out of 35 (8.6%)
+Registers used: 4 out of 35 (11.4%)
 
 "ATmega324PA" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   0 
@@ -1206,21 +1232,21 @@ clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0
 clt   :   0 clv   :   0 clz   :   0 com   :   1 cp    :   0 cpc   :   0 
 cpi   :   0 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0 
 fmulsu:   0 icall :   0 ijmp  :   0 in    :   1 inc   :   0 jmp   :   0 
-ld    :   0 ldd   :   0 ldi   :   2 lds   :   0 lpm   :   0 lsl   :   0 
-lsr   :   4 mov   :   1 movw  :   0 mul   :   0 muls  :   1 mulsu :   0 
-neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   4 pop   :   0 
-push  :   0 rcall :   0 ret   :   0 reti  :   0 rjmp  :   1 rol   :   0 
+ld    :   0 ldd   :   0 ldi   :   4 lds   :   0 lpm   :   0 lsl   :   0 
+lsr   :   0 mov   :   4 movw  :   0 mul   :   0 muls  :   1 mulsu :   0 
+neg   :   0 nop   :   0 or    :   0 ori   :   1 out   :   5 pop   :   0 
+push  :   0 rcall :   2 ret   :   2 reti  :   0 rjmp  :   1 rol   :   0 
 ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   0 
-sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
+sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   1 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
 sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   0 
-sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 9 out of 113 (8.0%)
+sub   :   0 subi  :   0 swap  :   1 tst   :   0 wdr   :   0 
+Instructions used: 13 out of 113 (11.5%)
 
 "ATmega324PA" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000022     34      0     34   32768   0.1%
+[.cseg] 0x000000 0x000034     52      0     52   32768   0.2%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 

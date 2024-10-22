@@ -1,21 +1,47 @@
-	LDI R16, 0x00  	
-	OUT DDRA, R16   //set input	
- 
-	LDI R16, $FF  	
-	OUT PORTA, R16	//pull up reg
-	OUT DDRB, R16 	//set up
- 
-start:
-	IN R16, PINA
-	COM R16  	
-	MOV	R17,R16
-	ANDI R17, 0xF0
-	LSR R17
-	LSR R17	
-	LSR R17
-	LSR R17
+ LDI R16, $00
+      OUT DDRA, R16
+      LDI R16, $FF
+      OUT PORTA, R16
 
-	ANDI R16, 0x0F
-	MULS R16, R17Z
+
+      LDI R16, 0xFF
+      OUT DDRB, R16
+
+
+      LDI R16, $00
+      OUT PORTB, R16
+
+
+; STATUS INPUT
+LOOP:
+	IN R16, PINA
+	COM R16
+
+
+	MOV R17, R16
+	ANDI R16, $F0		     ;4 BIT HIGH
+	SWAP R16
+
+
+	MOV R18, R16
+	RCALL EXTEND
+	MOV R16, R18
+
+
+	ANDI R17, $0F                ;4 BIT LOW
+
+
+	MOV R18, R17
+	RCALL EXTEND
+
+
+	MULS R16, R17
 	OUT PORTB, R0
-	rjmp start    	
+	RJMP LOOP
+
+
+EXTEND:
+	SBRS R18, 3
+	RET
+	ORI R18, 0xF0
+	RET
