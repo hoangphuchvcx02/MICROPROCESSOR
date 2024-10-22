@@ -1,10 +1,10 @@
 
-AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_3\lab1_3_3\lab1_3_3\main.asm Thu Sep 26 07:47:47 2024
+AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_3\lab1_3_3\lab1_3_3\main.asm Wed Oct 23 00:43:25 2024
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324PAdef.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324PAdef.inc'
                                  
-                                 .org 0x0000 ; interrupt vector table
+                                 
                                  
                                  ;***** Created: 2011-02-09 12:03 ******* Source: ATmega324PA.xml *********
                                  ;*************************************************************************
@@ -1151,6 +1151,7 @@ AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_3\lab1_3_3\lab
                                  
                                  ; ***** END OF FILE ******************************************************
                                  
+                                 .org 0x0000 ; interrupt vector table
 000000 c045                      rjmp start
                                  .org INT_VECTORS_SIZE
                                   
@@ -1172,7 +1173,7 @@ AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_3\lab1_3_3\lab
 000042 6572
 000043 7373
 000044 6465
-D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_3\lab1_3_3\lab1_3_3\main.asm(16): warning: .cseg .db misalignment - padding zero byte
+D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_3\lab1_3_3\lab1_3_3\main.asm(17): warning: .cseg .db misalignment - padding zero byte
 000045 0000                      message: .db "0xff nopressed",0
                                   
                                  ; Replace with your application code
@@ -1183,48 +1184,40 @@ D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_3\lab1_3_3\lab1_3_3\main.asm(16):
                                  ; Returns the key value (0-15) or 0xFF if no key is pressed
                                   
                                  start:
-000046 ef0f                                  	ldi r16, 0xff
-000047 b907                                  	out ddrc, r16
-000048 b90a                      				out ddrd, r16
-000049 940e 008f                                 call LCD_Init
+000046 ef0f                      	ldi r16, 0xff
+000047 b907                      	out ddrc, r16
+000048 940e 008a                 	call LCD_Init
                                   
                                      	
                                  loop:       	
-00004b 940e 006c                             	call keypad_scan
-00004d b978                                  	out portc, r23
-00004e 1779                                  	cp r23, r25
-00004f f3d9                                  	breq loop
-000050 2f97                                  	mov r25, r23
-000051 e001                                  	ldi r16, 0x01 ; Clear Display
-000052 940e 00a5                             	call LCD_Send_Command
-000054 e800                                  	ldi r16, 0x80 ; Clear Display
-000055 940e 00a5                             	call LCD_Send_Command
-000057 3f7f                                  	cpi r23, 0xff
-000058 f429                                  	brne key_pressed
-000059 e0f0                                  	ldi ZH, high(message) ; point to the information that is to be displayed
-00005a e3ee                                  	ldi ZL, low(message)
-00005b 940e 00f1                             	call LCD_Send_String
-00005d cfed                                  	rjmp loop
+00004a 940e 0067                     call keypad_scan
+00004c b978                          out portc, r23
+00004d 1779                          cp r23, r25
+00004e f3d9                          breq loop
+00004f 2f97                          mov r25, r23
+000050 e001                          ldi r16, 0x01 ; Clear Display
+000051 940e 00a0                     call LCD_Send_Command
+000053 e800                          ldi r16, 0x80 ; Clear Display
+000054 940e 00a0                     call LCD_Send_Command
+000056 3f7f                          cpi r23, 0xff
+000057 f429                          brne key_pressed
+000058 e0f0                          ldi ZH, high(message) ; point to the information that is to be displayed
+000059 e3ee                          ldi ZL, low(message)
+00005a 940e 00ec                     call LCD_Send_String
+00005c cfed                          rjmp loop
                                   
                                  key_pressed:            	
-00005e 307a                                  	cpi r23, 10
-00005f f010                                  	brlo less_than_A
-000060 e087                                  	ldi r24, 7
-000061 0f78                                      add r23, r24
+00005d 307a                          cpi r23, 10
+00005e f010                          brlo less_than_A
+00005f e087                          ldi r24, 7
+000060 0f78                          add r23, r24
                                  less_than_A:
-000062 e380                                  	ldi r24, 48
-000063 0f78                                  	add r23, r24
-000064 2f07                                  	mov r16, r23
-000065 940e 006a                 				call send_barled
-000067 940e 00da                             	call LCD_Send_Data
-000069 cfe1                                  	rjmp loop
+000061 e380                          ldi r24, 48
+000062 0f78                          add r23, r24
+000063 2f07                          mov r16, r23
+000064 940e 00d5                     call LCD_Send_Data
+000066 cfe3                          rjmp loop
                                   
-                                 
-                                 
-                                  send_barled:
-00006a b90b                      	out portd, r16
-00006b 9508                      	ret
-                                 
                                  ; Replace with your application code
                                  ; ATmega324PA keypad scan function
                                  ; Scans a 4x4 keypad connected to PORTB
@@ -1233,200 +1226,205 @@ D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_3\lab1_3_3\lab1_3_3\main.asm(16):
                                  ; Returns the key value (0-15) or 0xFF if no key is pressed
                                   
                                  keypad_scan:
-00006c e04f                                  	ldi r20, 0b00001111 ; set upper 4 bits of PORTB as input with pull-up, lower 4 bits as output
-00006d b944                                  	out DDRB, r20
-00006e ef4f                                  	ldi r20, 0b11111111 ; enable pull up resistor
-00006f b945                                  	out PORTB, r20
-000070 ef67                                  	ldi r22, 0b11110111 ; initial col mask
-000071 e070                                  	ldi r23, 0 ; initial pressed row value
-000072 e083                                  	ldi r24,3 ;scanning col index
+000067 e04f                          ldi r20, 0b00001111 ; set upper 4 bits of PORTB as input with pull-up, lower 4 bits as output
+000068 b944                          out DDRB, r20
+000069 ef4f                          ldi r20, 0b11111111 ; enable pull up resistor
+00006a b945                          out PORTB, r20
+00006b ef67                          ldi r22, 0b11110111 ; initial col mask
+00006c e070                          ldi r23, 0 ; initial pressed row value
+00006d e083                          ldi r24,3 ;scanning col index
+                                 
                                  keypad_scan_loop:
-000073 b965                                  	out PORTB, r22 ; scan current col
-000074 0000                                  	nop ;need to have 1us delay to stablize
-000075 991c                                      sbic PINB, 4 ; check row 0
-000076 c001                                  	rjmp keypad_scan_check_col2
-000077 c011                                  	rjmp keypad_scan_found ; row 0 is pressed
+00006e b965                          out PORTB, r22 ; scan current col
+00006f 0000                          nop ;need to have 1us delay to stablize
+000070 991c                          sbic PINB, 4 ; check row 0
+000071 c001                          rjmp keypad_scan_check_col2
+000072 c011                          rjmp keypad_scan_found ; row 0 is pressed
+                                 
                                  keypad_scan_check_col2:
-000078 991d                                  	sbic PINB, 5 ; check row 1
-000079 c002                                  	rjmp keypad_scan_check_col3
-00007a e071                                      ldi r23, 1 ; row1 is pressed
-00007b c00d                                  	rjmp keypad_scan_found
+000073 991d                          sbic PINB, 5 ; check row 1
+000074 c002                          rjmp keypad_scan_check_col3
+000075 e071                          ldi r23, 1 ; row1 is pressed
+000076 c00d                          rjmp keypad_scan_found
+                                 
                                  keypad_scan_check_col3:
-00007c 991e                                  	sbic PINB, 6 ; check row 2
-00007d c002                                  	rjmp keypad_scan_check_col4
-00007e e072                                  	ldi r23, 2 ; row 2 is pressed
-00007f c009                                  	rjmp keypad_scan_found
+000077 991e                          sbic PINB, 6 ; check row 2
+000078 c002                          rjmp keypad_scan_check_col4
+000079 e072                          ldi r23, 2 ; row 2 is pressed
+00007a c009                          rjmp keypad_scan_found
+                                 
                                  keypad_scan_check_col4:
-000080 991f                                  	sbic PINB, 7 ; check row 3
-000081 c002                                  	rjmp keypad_scan_next_row
-000082 e073                                  	ldi r23, 3 ; row 3 is pressed
-000083 c005                                  	rjmp keypad_scan_found
+00007b 991f                          sbic PINB, 7 ; check row 3
+00007c c002                          rjmp keypad_scan_next_row
+00007d e073                          ldi r23, 3 ; row 3 is pressed
+00007e c005                          rjmp keypad_scan_found
+                                 
                                  keypad_scan_next_row:
                                   ; check if all rows have been scanned
-000084 3080                                  	cpi r24,0
-000085 f039                                  	breq keypad_scan_not_found
-                                             	; shift row mask to scan next row
-000086 9567                                  	ror r22
-000087 958a                                  	dec r24 ;increase row index
-000088 cfea                              	    rjmp keypad_scan_loop
+00007f 3080                          cpi r24,0
+000080 f039                          breq keypad_scan_not_found
+                                     ; shift row mask to scan next row
+000081 9567                          ror r22
+000082 958a                          dec r24 ;increase row index
+000083 cfea                          rjmp keypad_scan_loop
+                                 
                                  keypad_scan_found:
                                  ; combine row and column to get key value (0-15)
                                  ;key code = row*4 + col
-000089 0f77                                  	lsl r23 ; shift row value 4 bits to the left
-00008a 0f77                                  	lsl r23
-00008b 0f78                                  	add r23, r24 ; add row value to column value
-00008c 9508                                  	ret
+000084 0f77                          lsl r23 ; shift row value 4 bits to the left
+000085 0f77                          lsl r23
+000086 0f78                          add r23, r24 ; add row value to column value
+000087 9508                          ret
                                  keypad_scan_not_found:
-00008d ef7f                                  	ldi r23, 0xFF ; no key pressed
-00008e 9508                                  	ret
+000088 ef7f                                  	ldi r23, 0xFF ; no key pressed
+000089 9508                                  	ret
                                   
                                  LCD_Init:
-                                 ; Set up data direction register for Port A
-00008f ef07                      ldi r16, 0b11110111 ; set PA7-PA4 as outputs, PA2-PA0 as output
-000090 b901                      out LCDPORTDIR, r16
-                                 ; Wait for LCD to power up
-000091 940e 00d2                 call DELAY_10MS
-000093 940e 00d2                 call DELAY_10MS
+                                 	; Set up data direction register for Port A
+00008a ef07                      	ldi r16, 0b11110111 ; set PA7-PA4 as outputs, PA2-PA0 as output
+00008b b901                      	out LCDPORTDIR, r16
+                                 	; Wait for LCD to power up
+00008c 940e 00cd                 	call DELAY_10MS
+00008e 940e 00cd                 	call DELAY_10MS
                                   
                                  ; Send initialization sequence
-000095 e002                      ldi r16, 0x02 ; Function Set: 4-bit interface
-000096 940e 00a5                 call LCD_Send_Command
-000098 e208                      ldi r16, 0x28 ; Function Set: enable 5x7 mode for chars
-000099 940e 00a5                 call LCD_Send_Command
-00009b e00e                      ldi r16, 0x0E ; Display Control: Display OFF, Cursor ON
-00009c 940e 00a5                 call LCD_Send_Command
-00009e e001                      ldi r16, 0x01 ; Clear Display
-00009f 940e 00a5                 call LCD_Send_Command
-0000a1 e800                      ldi r16, 0x80 ; Clear Display
-0000a2 940e 00a5                 call LCD_Send_Command
-0000a4 9508                      ret
+000090 e002                      	ldi r16, 0x02 ; Function Set: 4-bit interface
+000091 940e 00a0                 	call LCD_Send_Command
+000093 e208                      	ldi r16, 0x28 ; Function Set: enable 5x7 mode for chars
+000094 940e 00a0                 	call LCD_Send_Command
+000096 e00e                      	ldi r16, 0x0E ; Display Control: Display OFF, Cursor ON
+000097 940e 00a0                 	call LCD_Send_Command
+000099 e001                      	ldi r16, 0x01 ; Clear Display
+00009a 940e 00a0                 	call LCD_Send_Command
+00009c e800                      	ldi r16, 0x80 ; Clear Display
+00009d 940e 00a0                 	call LCD_Send_Command
+00009f 9508                      ret
                                   
                                  LCD_Send_Command:
-0000a5 931f                      push r17
-0000a6 940e 00b8                 call LCD_wait_busy ; check if LCD is busy
-0000a8 2f10                      mov r17,r16 ;save the command
-                                 ; Set RS low to select command register
-                                 ; Set RW low to write to LCD
-0000a9 7f10                      andi r17,0xF0
-                                 ; Send command to LCD
-0000aa b912                      out LCDPORT, r17
-0000ab 0000                      nop
-0000ac 0000                      nop
-                                 ; Pulse enable pin
-0000ad 9a12                      sbi LCDPORT, LCD_EN
-0000ae 0000                      nop
-0000af 0000                      nop
-0000b0 9812                      cbi LCDPORT, LCD_EN
-0000b1 9502                      swap r16
-0000b2 7f00                      andi r16,0xF0
-                                 ; Send command to LCD
-0000b3 b902                      out LCDPORT, r16
-                                 ; Pulse enable pin
-0000b4 9a12                      sbi LCDPORT, LCD_EN
-                                 ;nop
-                                 ;nop
-0000b5 9812                      cbi LCDPORT, LCD_EN
-0000b6 911f                      pop r17
-0000b7 9508                      ret
+0000a0 931f                      	push r17
+0000a1 940e 00b3                 	call LCD_wait_busy ; check if LCD is busy
+0000a3 2f10                      	mov r17,r16 ;save the command
+                                 	; Set RS low to select command register
+                                 	; Set RW low to write to LCD
+0000a4 7f10                      	andi r17,0xF0
+                                 	; Send command to LCD
+0000a5 b912                      	out LCDPORT, r17
+0000a6 0000                      	nop
+0000a7 0000                      	nop
+                                 	; Pulse enable pin
+0000a8 9a12                      	sbi LCDPORT, LCD_EN
+0000a9 0000                      	nop
+0000aa 0000                      	nop
+0000ab 9812                      	cbi LCDPORT, LCD_EN
+0000ac 9502                      	swap r16
+0000ad 7f00                      	andi r16,0xF0
+                                 	; Send command to LCD
+0000ae b902                      	out LCDPORT, r16
+                                 	; Pulse enable pin
+0000af 9a12                      	sbi LCDPORT, LCD_EN
+                                 	;nop
+                                 	;nop
+0000b0 9812                      	cbi LCDPORT, LCD_EN
+0000b1 911f                      	pop r17
+0000b2 9508                      ret
                                   
                                  LCD_wait_busy:
-0000b8 930f                      push r16
-0000b9 e007                      ldi r16, 0b00000111 ; set PA7-PA4 as input, PA2-PA0 as output
-0000ba b901                      out LCDPORTDIR, r16
-0000bb ef02                      ldi r16,0b11110010 ; set RS=0, RW=1 for read the busy flag
-0000bc b902                      out LCDPORT, r16
-0000bd 0000                      nop
-                                 LCD_wait_busy_loop:
-0000be 9a12                      sbi LCDPORT, LCD_EN
-0000bf 0000                      nop
-0000c0 0000                      nop
-0000c1 b100                      in r16, LCDPORTPIN
-0000c2 9812                      cbi LCDPORT, LCD_EN
-0000c3 0000                      nop
-0000c4 9a12                      sbi LCDPORT, LCD_EN
-0000c5 0000                      nop
-0000c6 0000                      nop
-0000c7 9812                      cbi LCDPORT, LCD_EN
-0000c8 0000                      nop
-0000c9 7800                      andi r16,0x80
-0000ca 3800                      cpi r16,0x80
-0000cb f391                      breq LCD_wait_busy_loop
-0000cc ef07                      ldi r16, 0b11110111 ; set PA7-PA4 as output, PA2-PA0 as output
-0000cd b901                      out LCDPORTDIR, r16
-0000ce e000                      ldi r16,0b00000000 ; set RS=0, RW=1 for read the busy flag
-0000cf b902                      out LCDPORT, r16
-0000d0 910f                      pop r16
-0000d1 9508                      ret
+0000b3 930f                      	push r16
+0000b4 e007                      	ldi r16, 0b00000111 ; set PA7-PA4 as input, PA2-PA0 as output
+0000b5 b901                      	out LCDPORTDIR, r16
+0000b6 ef02                      	ldi r16,0b11110010 ; set RS=0, RW=1 for read the busy flag
+0000b7 b902                      	out LCDPORT, r16
+0000b8 0000                      	nop
+                                 	LCD_wait_busy_loop:
+0000b9 9a12                      		sbi LCDPORT, LCD_EN
+0000ba 0000                      		nop
+0000bb 0000                      		nop
+0000bc b100                      		in r16, LCDPORTPIN
+0000bd 9812                      		cbi LCDPORT, LCD_EN
+0000be 0000                      		nop
+0000bf 9a12                      		sbi LCDPORT, LCD_EN
+0000c0 0000                      		nop
+0000c1 0000                      		nop
+0000c2 9812                      		cbi LCDPORT, LCD_EN
+0000c3 0000                      		nop
+0000c4 7800                      		andi r16,0x80
+0000c5 3800                      		cpi r16,0x80
+0000c6 f391                      		breq LCD_wait_busy_loop
+0000c7 ef07                      		ldi r16, 0b11110111 ; set PA7-PA4 as output, PA2-PA0 as output
+0000c8 b901                      		out LCDPORTDIR, r16
+0000c9 e000                      		ldi r16,0b00000000 ; set RS=0, RW=1 for read the busy flag
+0000ca b902                      		out LCDPORT, r16
+0000cb 910f                      		pop r16
+0000cc 9508                      ret
                                   
                                  DELAY_10MS:
-0000d2 e550                                  	ldi r21,80 ;1MC
+0000cd e550                                  	ldi r21,80 ;1MC
                                  L1:
-0000d3 ef4a                                  	ldi r20,250 ;1MC
+0000ce ef4a                                  	ldi r20,250 ;1MC
                                  L2:
-0000d4 954a                                  	dec r20 ;1MC
-0000d5 0000                                  	nop ;1MC
-0000d6 f7e9                                  	brne L2 ;2/1MC
-0000d7 955a                                  	dec r21 ;1MC
-0000d8 f7d1                                  	brne L1 ;2/1MC
-0000d9 9508                         	         ret ;4MC
+0000cf 954a                                  	dec r20 ;1MC
+0000d0 0000                                  	nop ;1MC
+0000d1 f7e9                                  	brne L2 ;2/1MC
+0000d2 955a                                  	dec r21 ;1MC
+0000d3 f7d1                                  	brne L1 ;2/1MC
+0000d4 9508                         	         ret ;4MC
                                   
                                  LCD_Send_Data:
-0000da 931f                      push r17
-0000db 940e 00b8                 call LCD_wait_busy ;check if LCD is busy
-0000dd 2f10                      mov r17,r16 ;save the command
-                                 ; Set RS high to select data register
-                                 ; Set RW low to write to LCD
-0000de 7f10                      andi r17,0xF0
-0000df 6011                      ori r17,0x01
-                                 ; Send data to LCD
-0000e0 b912                      out LCDPORT, r17
-0000e1 0000                      nop
-                                 ; Pulse enable pin
-0000e2 9a12                      sbi LCDPORT, LCD_EN
-0000e3 0000                      nop
-0000e4 9812                      cbi LCDPORT, LCD_EN
-                                 ; Delay for command execution
-                                 ;send the lower nibble
-0000e5 0000                      nop
-0000e6 9502                      swap r16
-0000e7 7f00                      andi r16,0xF0
-                                 ; Set RS high to select data register
-                                 ; Set RW low to write to LCD
-0000e8 7f00                      andi r16,0xF0
-0000e9 6001                      ori r16,0x01
-                                 ; Send command to LCD
-0000ea b902                      out LCDPORT, r16
-0000eb 0000                      nop
-                                 ; Pulse enable pin
-0000ec 9a12                      sbi LCDPORT, LCD_EN
-0000ed 0000                      nop
-0000ee 9812                      cbi LCDPORT, LCD_EN
-0000ef 911f                      pop r17
-0000f0 9508                      ret
+0000d5 931f                      	push r17
+0000d6 940e 00b3                 	call LCD_wait_busy ;check if LCD is busy
+0000d8 2f10                      	mov r17,r16 ;save the command
+                                 	; Set RS high to select data register
+                                 	; Set RW low to write to LCD
+0000d9 7f10                      	andi r17,0xF0
+0000da 6011                      	ori r17,0x01
+                                 	; Send data to LCD
+0000db b912                      	out LCDPORT, r17
+0000dc 0000                      	nop
+                                 	; Pulse enable pin
+0000dd 9a12                      	sbi LCDPORT, LCD_EN
+0000de 0000                      	nop
+0000df 9812                      	cbi LCDPORT, LCD_EN
+                                 	; Delay for command execution
+                                 	;send the lower nibble
+0000e0 0000                      	nop
+0000e1 9502                      	swap r16
+0000e2 7f00                      	andi r16,0xF0
+                                 	; Set RS high to select data register
+                                 	; Set RW low to write to LCD
+0000e3 7f00                      	andi r16,0xF0
+0000e4 6001                      	ori r16,0x01
+                                 	; Send command to LCD
+0000e5 b902                      	out LCDPORT, r16
+0000e6 0000                      	nop
+                                 	; Pulse enable pin
+0000e7 9a12                      	sbi LCDPORT, LCD_EN
+0000e8 0000                      	nop
+0000e9 9812                      	cbi LCDPORT, LCD_EN
+0000ea 911f                      	pop r17
+0000eb 9508                      ret
                                   
                                   
                                  LCD_Send_String:
-0000f1 93ff                      push ZH ; preserve pointer registers
-0000f2 93ef                      push ZL
-0000f3 930f                      push LCDData
-                                 ; fix up the pointers for use with the 'lpm' instruction
-0000f4 0fee                      lsl ZL ; shift the pointer one bit left for the lpm instruction
-0000f5 1fff                      rol ZH
-                                 ; write the string of characters
-                                 LCD_Send_String_01:
-0000f6 9105                      lpm LCDData, Z+ ; get a character
-0000f7 3000                      cpi LCDData, 0 ; check for end of string
-0000f8 f019                      breq LCD_Send_String_02 ; done
-                                 ; arrive here if this is a valid character
-0000f9 940e 00da                 call LCD_Send_Data ; display the character
-0000fb cffa                      rjmp LCD_Send_String_01 ; not done, send another character
-                                 ; arrive here when all characters in the message have been sent to the LCD module
-                                 LCD_Send_String_02:
-0000fc 910f                      pop LCDData
-0000fd 91ef                      pop ZL ; restore pointer registers
-0000fe 91ff                      pop ZH
-0000ff 9508                      ret
-                                  
+0000ec 93ff                      	push ZH ; preserve pointer registers
+0000ed 93ef                      	push ZL
+0000ee 930f                      	push LCDData
+                                 	; fix up the pointers for use with the 'lpm' instruction
+0000ef 0fee                      	lsl ZL ; shift the pointer one bit left for the lpm instruction
+0000f0 1fff                      	rol ZH
+                                 	; write the string of characters
+                                 	LCD_Send_String_01:
+0000f1 9105                      	lpm LCDData, Z+ ; get a character
+0000f2 3000                      	cpi LCDData, 0 ; check for end of string
+0000f3 f019                      	breq LCD_Send_String_02 ; done
+                                 	; arrive here if this is a valid character
+0000f4 940e 00d5                 	call LCD_Send_Data ; display the character
+0000f6 cffa                      	rjmp LCD_Send_String_01 ; not done, send another character
+                                 	; arrive here when all characters in the message have been sent to the LCD module
+                                 	LCD_Send_String_02:
+0000f7 910f                      	pop LCDData
+0000f8 91ef                      	pop ZL ; restore pointer registers
+0000f9 91ff                      	pop ZH
+0000fa 9508                      	ret
 
 
 RESOURCE USE INFORMATION
@@ -1446,7 +1444,7 @@ counted separately from r26..r31 here.
 "ATmega324PA" register use summary:
 x  :   0 y  :   0 z  :   1 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:  41 r17:  11 r18:   0 r19:   0 r20:   6 
+r13:   0 r14:   0 r15:   0 r16:  39 r17:  11 r18:   0 r19:   0 r20:   6 
 r21:   2 r22:   3 r23:  16 r24:   8 r25:   2 r26:   0 r27:   0 r28:   0 
 r29:   0 r30:   4 r31:   4 
 Registers used: 11 out of 35 (31.4%)
@@ -1457,15 +1455,15 @@ andi  :   6 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0
 brcc  :   0 brcs  :   0 break :   0 breq  :   4 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   1 brlt  :   0 brmi  :   0 
 brne  :   3 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
-brvs  :   0 bset  :   0 bst   :   0 call  :  17 cbi   :   6 cbr   :   0 
+brvs  :   0 bset  :   0 bst   :   0 call  :  16 cbi   :   6 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   1 cpc   :   0 
 cpi   :   5 cpse  :   0 dec   :   3 eor   :   0 fmul  :   0 fmuls :   0 
 fmulsu:   0 icall :   0 ijmp  :   0 in    :   1 inc   :   0 jmp   :   0 
 ld    :   0 ldd   :   0 ldi   :  28 lds   :   0 lpm   :   1 lsl   :   3 
 lsr   :   0 mov   :   4 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :  18 or    :   0 ori   :   2 out   :  16 pop   :   6 
-push  :   6 rcall :   0 ret   :   9 reti  :   0 rjmp  :  13 rol   :   1 
+neg   :   0 nop   :  18 or    :   0 ori   :   2 out   :  14 pop   :   6 
+push  :   6 rcall :   0 ret   :   8 reti  :   0 rjmp  :  13 rol   :   1 
 ror   :   1 sbc   :   0 sbci  :   0 sbi   :   6 sbic  :   4 sbis  :   0 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
@@ -1476,7 +1474,7 @@ Instructions used: 27 out of 113 (23.9%)
 "ATmega324PA" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000200    374     16    390   32768   1.2%
+[.cseg] 0x000000 0x0001f6    364     16    380   32768   1.2%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 
