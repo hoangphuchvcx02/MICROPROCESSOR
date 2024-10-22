@@ -1,10 +1,10 @@
 
-AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_1\lab1_1_2\lab1_1_2\lab1_1_2\main.asm Tue Oct 22 23:53:29 2024
+AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_1\lab1_1_2\lab1_1_2\lab1_1_2\main.asm Wed Oct 23 00:06:02 2024
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324PAdef.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324PAdef.inc'
                                  
-                                 	LDI R16, 0x00  	; Initialize R16 with 0
+                                 .MACRO INIT_PORTS
                                  
                                  ;***** Created: 2011-02-09 12:03 ******* Source: ATmega324PA.xml *********
                                  ;*************************************************************************
@@ -1150,44 +1150,114 @@ AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_1\lab1_1_2\lab1_1_2\lab
                                  #endif  /* _M324PADEF_INC_ */
                                  
                                  ; ***** END OF FILE ******************************************************
-000000 e000                      
-000001 b901                      	OUT DDRA, R16 	; Set all bits in DDRA (PORTA data direction register) to 0 (input)
-000002 ef0f                      	LDI R16, 0xFF  	; Initialize R16 with 0xFF (binary 11111111)
-000003 b902                      	OUT PORTA, R16	; Set all bits in PORTA to high (enable pull-up resistors for input)
-000004 b904                      	OUT DDRB, R16 	; Set all bits in DDRB (PORTB data direction register) to 0 (output)
+                                 
+                                     LDI R16, 0x00
+                                     OUT DDRA, R16
+                                     LDI R16, 0xFF
+                                     OUT PORTA, R16
+                                     OUT DDRB, R16
+                                 .ENDMACRO
+                                 
+                                 .MACRO DELAY_ROUTINE
+                                     LDI        R21,250     ;1MC
+                                 L1: LDI        R20,250     ;1MC
+                                 L2: DEC        R20         ;1MC
+                                     NOP                    ;1MC
+                                     BRNE       L2          ; 2/1MC
+                                     DEC         R21        ;1MC
+                                     BRNE      L1           ;2/1MC
+                                     RET                    ;4MC
+                                 .ENDMACRO
+                                 
+                                 .MACRO HANDLE_OVERFLOW
+                                     LDI R16,0x00
+                                     OUT PORTB, R16
+                                     RCALL DELAY
+                                     LDI R16, 0xFF
+                                     OUT PORTB, R16
+                                     RCALL DELAY
+                                 .ENDMACRO
+                                 
+                                     .DEF temp = R16
+                                     .DEF add_value = R17
+                                 
+                                 /////////////////////main///////////////////////////////
+000000 e000
+000001 b901
+000002 ef0f
+000003 b902
+000004 b904                          INIT_PORTS
+                                 
+                                 start:    
+000005 e015                          LDI add_value, 0x05  ; Load the value 0x05 into add_value for addition
+000006 b100                          IN temp, PINA        ; Read the input from PORTA and store it in temp
+000007 9500                          COM temp             ; Complement the input value
+000008 0f01                          ADD temp, add_value  ; Add the value in add_value (0x05) to temp
+000009 f010                          BRCS OVERFLOW
+                                 
+00000a b905                          OUT PORTB, temp      ; Output the result in temp to PORTB
+00000b cff9                          RJMP start           ; Jump back to the start of the loop
+                                 
+                                 OVERFLOW:
+00000c e000
+00000d b905
+00000e d004
+00000f ef0f
+000010 b905
+000011 d001                          HANDLE_OVERFLOW
+000012 cff2                          RJMP start
+                                 
+                                 DELAY:
+000013 ef5a
+000014 ef4a
+000015 954a
+000016 0000
+000017 f7e9
+000018 955a
+000019 f7d1
+00001a 9508                          DELAY_ROUTINE
+                                 
+                                 
+                                 
+                                 /*
+                                 	LDI R16, 0x00  	; Initialize R16 with 0
+                                 	OUT DDRA, R16 	; Set all bits in DDRA (PORTA data direction register) to 0 (input)
+                                 	LDI R16, 0xFF  	; Initialize R16 with 0xFF (binary 11111111)
+                                 	OUT PORTA, R16	; Set all bits in PORTA to high (enable pull-up resistors for input)
+                                 	OUT DDRB, R16 	; Set all bits in DDRB (PORTB data direction register) to 0 (output)
                                  	
                                  
                                  
                                   
                                  start:	
-000005 e015                      	LDI R17, 0x05 	; Load the value 0x05 into R17 for addition
-000006 b100                      	IN R16, PINA  	; Read the input from PORTA and store it in R16
-000007 9500                          COM R16
-000008 0f01                      	ADD R16, R17  	; Add the value in R17 (0x05) to R16
-000009 f010                      	BRCS OVERFLOW
+                                 	LDI R17, 0x05 	; Load the value 0x05 into R17 for addition
+                                 	IN R16, PINA  	; Read the input from PORTA and store it in R16
+                                     COM R16
+                                 	ADD R16, R17  	; Add the value in R17 (0x05) to R16
+                                 	BRCS OVERFLOW
                                  
-00000a b905                      	OUT PORTB, R16	; Output the result in R16 to PORTB 
-00000b cff9                      	RJMP START    	; Jump back to the start of the loop
+                                 	OUT PORTB, R16	; Output the result in R16 to PORTB 
+                                 	RJMP START    	; Jump back to the start of the loop
                                  
                                  OVERFLOW:
-00000c e000                      	LDI R16,0X00
-00000d b905                      	OUT PORTB, R16
-00000e d004                      	RCALL DELAY
-00000f ef0f                      	LDI R16, 0XFF
-000010 b905                      	OUT PORTB, R16
-000011 d001                      	RCALL DELAY
-000012 cff2                      	RJMP START
+                                 	LDI R16,0X00
+                                 	OUT PORTB, R16
+                                 	RCALL DELAY
+                                 	LDI R16, 0XFF
+                                 	OUT PORTB, R16
+                                 	RCALL DELAY
+                                 	RJMP START
                                  
                                  
                                  DELAY:
-000013 ef5a                                      LDI        R21,250     ;1MC
-000014 ef4a                              L1:     LDI        R20,250     ;1MC
-000015 954a                              L2:     DEC        R20         ;1MC
-000016 0000                                      NOP                    ;1MC
-000017 f7e9                                      BRNE       L2          ; 2/1MC
-000018 955a                                      DEC         R21        ;1MC
-000019 f7d1                                      BRNE      L1           ;2/1MC
-00001a 9508                                      RET                    ;4MC
+                                                 LDI        R21,250     ;1MC
+                                         L1:     LDI        R20,250     ;1MC
+                                         L2:     DEC        R20         ;1MC
+                                                 NOP                    ;1MC
+                                                 BRNE       L2          ; 2/1MC
+                                                 DEC         R21        ;1MC
+                                                 BRNE      L1           ;2/1MC
+                                                 RET                    ;4MC
 
 
 RESOURCE USE INFORMATION
