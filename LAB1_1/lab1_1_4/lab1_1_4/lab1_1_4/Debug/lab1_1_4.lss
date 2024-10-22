@@ -1,10 +1,10 @@
 
-AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_1\lab1_1_4\lab1_1_4\lab1_1_4\main.asm Tue Oct 22 08:31:52 2024
+AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_1\lab1_1_4\lab1_1_4\lab1_1_4\main.asm Wed Oct 23 00:16:29 2024
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324PAdef.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324PAdef.inc'
                                  
-                                  LDI R16, $00
+                                 //Connect and implement a program to calculate the product of two nibbles (high and low) of PORT A and send it to PORT B. Consider these two nibbles as signed numbers.
                                  
                                  ;***** Created: 2011-02-09 12:03 ******* Source: ATmega324PA.xml *********
                                  ;*************************************************************************
@@ -1150,53 +1150,100 @@ AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_1\lab1_1_4\lab1_1_4\lab
                                  #endif  /* _M324PADEF_INC_ */
                                  
                                  ; ***** END OF FILE ******************************************************
-000000 e000                      
-000001 b901                            OUT DDRA, R16
-000002 ef0f                            LDI R16, $FF
-000003 b902                            OUT PORTA, R16
+                                 
+                                 //Example: PORT A = 0b0111_1111, then PORT B = 3 * (-1).
+                                 .MACRO INIT_PORTS
+                                     LDI R16, $00
+                                     OUT DDRA, R16
+                                     LDI R16, $FF
+                                     OUT PORTA, R16
+                                     LDI R16, $FF
+                                     OUT DDRB, R16
+                                     LDI R16, $00
+                                     OUT PORTB, R16
+                                 .ENDMACRO
+                                 
+                                 .MACRO EXTEND_ROUTINE
+                                     SBRS R18, 3
+                                     RET
+                                     ORI R18, 0xF0
+                                     RET
+                                 .ENDMACRO
+                                 
+                                     .DEF temp = R16
+                                     .DEF high_nibble = R17
+                                     .DEF low_nibble = R18
+                                 
+                                 	///////////////////main///////////////////
+000000 e000
+000001 b901
+000002 ef0f
+000003 b902
+000004 ef0f
+000005 b904
+000006 e000
+000007 b905                          INIT_PORTS
+                                 
+                                 LOOP:
+000008 b100                          IN temp, PINA
+000009 9500                          COM temp
+00000a 2f10                          MOV high_nibble, temp
+00000b 7f00                          ANDI temp, $F0            ; Mask to keep 4 high bits
+00000c 9502                          SWAP temp
+                                 
+00000d 2f20                          MOV low_nibble, temp
+00000e d007                          RCALL EXTEND
+00000f 2f02                          MOV temp, low_nibble
+                                 
+000010 701f                          ANDI high_nibble, $0F     ; Mask to keep 4 low bits
+000011 2f21                          MOV low_nibble, high_nibble
+000012 d003                          RCALL EXTEND
+000013 0201                          MULS temp, high_nibble
+000014 b805                          OUT PORTB, R0
+000015 cff2                          RJMP LOOP
+                                 
+                                 EXTEND:
+000016 ff23
+000017 9508
+000018 6f20
+000019 9508                          EXTEND_ROUTINE
                                  
                                  
-000004 ef0f                            LDI R16, 0xFF
-000005 b904                            OUT DDRB, R16
-                                 
-                                 
-000006 e000                            LDI R16, $00
-000007 b905                            OUT PORTB, R16
+                                 /*
+                                 LDI R16, $00
+                                 OUT DDRA, R16
+                                 LDI R16, $FF
+                                 OUT PORTA, R16
+                                 LDI R16, 0xFF
+                                 OUT DDRB, R16
+                                 LDI R16, $00
+                                 OUT PORTB, R16
                                  
                                  
                                  ; STATUS INPUT
                                  LOOP:
-000008 b100                      	IN R16, PINA
-000009 9500                      	COM R16
+                                 	IN R16, PINA
+                                 	COM R16
+                                 	MOV R17, R16
+                                 	ANDI R16, $F0		     ;4 BIT HIGH
+                                 	SWAP R16
                                  
+                                 	MOV R18, R16
+                                 	RCALL EXTEND
+                                 	MOV R16, R18
                                  
-00000a 2f10                      	MOV R17, R16
-00000b 7f00                      	ANDI R16, $F0		     ;4 BIT HIGH
-00000c 9502                      	SWAP R16
-                                 
-                                 
-00000d 2f20                      	MOV R18, R16
-00000e d007                      	RCALL EXTEND
-00000f 2f02                      	MOV R16, R18
-                                 
-                                 
-000010 701f                      	ANDI R17, $0F                ;4 BIT LOW
-                                 
-                                 
-000011 2f21                      	MOV R18, R17
-000012 d003                      	RCALL EXTEND
-                                 
-                                 
-000013 0201                      	MULS R16, R17
-000014 b805                      	OUT PORTB, R0
-000015 cff2                      	RJMP LOOP
-                                 
+                                 	ANDI R17, $0F                ;4 BIT LOW
+                                 	MOV R18, R17
+                                 	RCALL EXTEND
+                                 	MULS R16, R17
+                                 	OUT PORTB, R0
+                                 	RJMP LOOP
                                  
                                  EXTEND:
-000016 ff23                      	SBRS R18, 3
-000017 9508                      	RET
-000018 6f20                      	ORI R18, 0xF0
-000019 9508                      	RET
+                                 	SBRS R18, 3
+                                 	RET
+                                 	ORI R18, 0xF0
+                                 	RET
 
 
 RESOURCE USE INFORMATION
