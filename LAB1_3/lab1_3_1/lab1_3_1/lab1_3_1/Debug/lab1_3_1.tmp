@@ -1,0 +1,44 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega324PA"</DEVICE>
+ <WORKING_DIR>D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_1\lab1_3_1\lab1_3_1\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_1\lab1_3_1\lab1_3_1\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324PAdef.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_1\lab1_3_1\lab1_3_1\Debug\lab1_3_1.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>lab1_3_1.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>lab1_3_1.map</FILE>
+  <FILE>lab1_3_1.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <reset_handler><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_1\lab1_3_1\lab1_3_1\main.asm</FILE><LINE>10</LINE></reset_handler>
+  <course_name><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_1\lab1_3_1\lab1_3_1\main.asm</FILE><LINE>5</LINE></course_name>
+  <course_time><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_1\lab1_3_1\lab1_3_1\main.asm</FILE><LINE>7</LINE></course_time>
+  <LCD_Init><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_1\lab1_3_1\lab1_3_1\main.asm</FILE><LINE>30</LINE></LCD_Init>
+  <LCD_Send_String><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_1\lab1_3_1\lab1_3_1\main.asm</FILE><LINE>52</LINE></LCD_Send_String>
+  <LCD_Move_Cursor><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_1\lab1_3_1\lab1_3_1\main.asm</FILE><LINE>74</LINE></LCD_Move_Cursor>
+  <start><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_1\lab1_3_1\lab1_3_1\main.asm</FILE><LINE>24</LINE></start>
+  <DELAY_10MS><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_1\lab1_3_1\lab1_3_1\main.asm</FILE><LINE>107</LINE></DELAY_10MS>
+  <LCD_Send_Command><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_1\lab1_3_1\lab1_3_1\main.asm</FILE><LINE>117</LINE></LCD_Send_Command>
+  <LCD_Send_String_01><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_1\lab1_3_1\lab1_3_1\main.asm</FILE><LINE>60</LINE></LCD_Send_String_01>
+  <LCD_Send_String_02><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_1\lab1_3_1\lab1_3_1\main.asm</FILE><LINE>68</LINE></LCD_Send_String_02>
+  <LCD_Send_Data><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_1\lab1_3_1\lab1_3_1\main.asm</FILE><LINE>145</LINE></LCD_Send_Data>
+  <LCD_Move_Cursor_Second><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_1\lab1_3_1\lab1_3_1\main.asm</FILE><LINE>84</LINE></LCD_Move_Cursor_Second>
+  <LCD_Move_Cursor_Exit><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_1\lab1_3_1\lab1_3_1\main.asm</FILE><LINE>92</LINE></LCD_Move_Cursor_Exit>
+  <L1><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_1\lab1_3_1\lab1_3_1\main.asm</FILE><LINE>109</LINE></L1>
+  <L2><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_1\lab1_3_1\lab1_3_1\main.asm</FILE><LINE>110</LINE></L2>
+  <LCD_wait_busy><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_1\lab1_3_1\lab1_3_1\main.asm</FILE><LINE>179</LINE></LCD_wait_busy>
+  <LCD_wait_busy_loop><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\LAB1_3\lab1_3_1\lab1_3_1\lab1_3_1\main.asm</FILE><LINE>186</LINE></LCD_wait_busy_loop>
+ </LABELS>
+</ASSEMBLER_INFO>
