@@ -1,0 +1,46 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega324PA"</DEVICE>
+ <WORKING_DIR>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\uart_lowtoup_LCD\uart_lowtoup_LCD\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>D:/Program Files\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc</DIR>
+  <DIR>D:\Program Files\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\uart_lowtoup_LCD\uart_lowtoup_LCD\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>D:/Program Files\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324PAdef.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\uart_lowtoup_LCD\uart_lowtoup_LCD\Debug\uart_lowtoup_LCD.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>uart_lowtoup_LCD.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>uart_lowtoup_LCD.map</FILE>
+  <FILE>uart_lowtoup_LCD.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <POWER_RESET_LCD4><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\uart_lowtoup_LCD\uart_lowtoup_LCD\main.asm</FILE><LINE>158</LINE></POWER_RESET_LCD4>
+  <INIT_LCD4><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\uart_lowtoup_LCD\uart_lowtoup_LCD\main.asm</FILE><LINE>186</LINE></INIT_LCD4>
+  <USART_Init><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\uart_lowtoup_LCD\uart_lowtoup_LCD\main.asm</FILE><LINE>100</LINE></USART_Init>
+  <OUT_LCD4_2><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\uart_lowtoup_LCD\uart_lowtoup_LCD\main.asm</FILE><LINE>215</LINE></OUT_LCD4_2>
+  <DELAY_US><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\uart_lowtoup_LCD\uart_lowtoup_LCD\main.asm</FILE><LINE>249</LINE></DELAY_US>
+  <LOOP><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\uart_lowtoup_LCD\uart_lowtoup_LCD\main.asm</FILE><LINE>44</LINE></LOOP>
+  <AGAIN1><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\uart_lowtoup_LCD\uart_lowtoup_LCD\main.asm</FILE><LINE>45</LINE></AGAIN1>
+  <USART_ReceiveChar><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\uart_lowtoup_LCD\uart_lowtoup_LCD\main.asm</FILE><LINE>128</LINE></USART_ReceiveChar>
+  <CHECK_UPPERCASE><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\uart_lowtoup_LCD\uart_lowtoup_LCD\main.asm</FILE><LINE>54</LINE></CHECK_UPPERCASE>
+  <LOWCASE><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\uart_lowtoup_LCD\uart_lowtoup_LCD\main.asm</FILE><LINE>60</LINE></LOWCASE>
+  <NUMBER><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\uart_lowtoup_LCD\uart_lowtoup_LCD\main.asm</FILE><LINE>76</LINE></NUMBER>
+  <UPPERCASE><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\uart_lowtoup_LCD\uart_lowtoup_LCD\main.asm</FILE><LINE>63</LINE></UPPERCASE>
+  <USART_SendChar><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\uart_lowtoup_LCD\uart_lowtoup_LCD\main.asm</FILE><LINE>115</LINE></USART_SendChar>
+  <DISPLAY_NUM><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\uart_lowtoup_LCD\uart_lowtoup_LCD\main.asm</FILE><LINE>82</LINE></DISPLAY_NUM>
+  <USART_SendChar_Wait><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\uart_lowtoup_LCD\uart_lowtoup_LCD\main.asm</FILE><LINE>118</LINE></USART_SendChar_Wait>
+  <USART_ReceiveChar_Wait><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\uart_lowtoup_LCD\uart_lowtoup_LCD\main.asm</FILE><LINE>131</LINE></USART_ReceiveChar_Wait>
+  <USART_SendChart_hehe><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\uart_lowtoup_LCD\uart_lowtoup_LCD\main.asm</FILE><LINE>142</LINE></USART_SendChart_hehe>
+  <OUT_LCD4><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\uart_lowtoup_LCD\uart_lowtoup_LCD\main.asm</FILE><LINE>240</LINE></OUT_LCD4>
+  <L1><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\uart_lowtoup_LCD\uart_lowtoup_LCD\main.asm</FILE><LINE>251</LINE></L1>
+  <L2><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\uart_lowtoup_LCD\uart_lowtoup_LCD\main.asm</FILE><LINE>252</LINE></L2>
+ </LABELS>
+</ASSEMBLER_INFO>

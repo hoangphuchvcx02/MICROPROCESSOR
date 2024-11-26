@@ -1,0 +1,31 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega324PA"</DEVICE>
+ <WORKING_DIR>D:\MICROPROCESSOR\MICROPROCESSOR\demo\interrupts int0\interrupts int0\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\interrupts int0\interrupts int0\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324PAdef.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\interrupts int0\interrupts int0\Debug\interrupts int0.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>interrupts int0.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>interrupts int0.map</FILE>
+  <FILE>interrupts int0.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <MAIN><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\interrupts int0\interrupts int0\main.asm</FILE><LINE>7</LINE></MAIN>
+  <TIMER0_OVF_ISR><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\interrupts int0\interrupts int0\main.asm</FILE><LINE>66</LINE></TIMER0_OVF_ISR>
+  <HERE><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\interrupts int0\interrupts int0\main.asm</FILE><LINE>44</LINE></HERE>
+  <BUTTON_PRESSED><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\interrupts int0\interrupts int0\main.asm</FILE><LINE>53</LINE></BUTTON_PRESSED>
+  <EXIT_ISR><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\interrupts int0\interrupts int0\main.asm</FILE><LINE>77</LINE></EXIT_ISR>
+ </LABELS>
+</ASSEMBLER_INFO>

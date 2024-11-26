@@ -1,0 +1,44 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega324PA"</DEVICE>
+ <WORKING_DIR>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\test\test\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>D:/Program Files\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc</DIR>
+  <DIR>D:\Program Files\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\test\test\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>D:/Program Files\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324PAdef.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\test\test\Debug\test.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>test.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>test.map</FILE>
+  <FILE>test.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <A><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\test\test\main.asm</FILE><LINE>26</LINE></A>
+  <B><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\test\test\main.asm</FILE><LINE>31</LINE></B>
+  <DIV1616><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\test\test\main.asm</FILE><LINE>140</LINE></DIV1616>
+  <MAIN_PROGRAM><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\test\test\main.asm</FILE><LINE>58</LINE></MAIN_PROGRAM>
+  <LED3><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\test\test\main.asm</FILE><LINE>59</LINE></LED3>
+  <WRITEDATA><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\test\test\main.asm</FILE><LINE>99</LINE></WRITEDATA>
+  <nLE1><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\test\test\main.asm</FILE><LINE>114</LINE></nLE1>
+  <DELAY5MS><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\test\test\main.asm</FILE><LINE>126</LINE></DELAY5MS>
+  <RESET_LED><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\test\test\main.asm</FILE><LINE>120</LINE></RESET_LED>
+  <LED2><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\test\test\main.asm</FILE><LINE>68</LINE></LED2>
+  <LED1><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\test\test\main.asm</FILE><LINE>77</LINE></LED1>
+  <LED0><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\test\test\main.asm</FILE><LINE>86</LINE></LED0>
+  <TABLE_DATA><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\test\test\main.asm</FILE><LINE>97</LINE></TABLE_DATA>
+  <nLE0><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\test\test\main.asm</FILE><LINE>108</LINE></nLE0>
+  <WAIT><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\test\test\main.asm</FILE><LINE>133</LINE></WAIT>
+  <LOOP><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\test\test\main.asm</FILE><LINE>145</LINE></LOOP>
+  <DONE><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\test\test\main.asm</FILE><LINE>160</LINE></DONE>
+  <SKIP><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\chuong trinh con\test\test\main.asm</FILE><LINE>158</LINE></SKIP>
+ </LABELS>
+</ASSEMBLER_INFO>

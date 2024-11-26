@@ -1,0 +1,28 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega324PA"</DEVICE>
+ <WORKING_DIR>D:\MICROPROCESSOR\MICROPROCESSOR\demo\midterm\mideterm231\mideterm231\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\midterm\mideterm231\mideterm231\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324PAdef.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\midterm\mideterm231\mideterm231\Debug\mideterm231.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>mideterm231.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>mideterm231.map</FILE>
+  <FILE>mideterm231.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <LOOP><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\midterm\mideterm231\mideterm231\main.asm</FILE><LINE>15</LINE></LOOP>
+  <SEND_55><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\midterm\mideterm231\mideterm231\main.asm</FILE><LINE>24</LINE></SEND_55>
+ </LABELS>
+</ASSEMBLER_INFO>

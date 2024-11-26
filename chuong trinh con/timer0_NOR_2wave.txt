@@ -1,0 +1,52 @@
+//chuỗi xung vuông tần số 1KHz, chu kỳ nhiệm vụ (CKNV) 30% xuất ra chân PC5.
+.EQU TP_H= -37 ;giá trị đặt trước mức 1
+.EQU TP_L= -87
+
+;giá trị đặt trước mức 0
+
+.ORG 0
+RJMP MAIN 
+.ORG 0X40
+
+MAIN: 
+LDI R16,HIGH(RAMEND) ;đưa stack lên đỉnh SRAM
+OUT SPH,R16
+LDI R16,LOW(RAMEND)
+OUT SPL,R16
+
+LDI R16,0x20 ;đặt PC5 là output
+OUT DDRC,R16
+RCALL TIMER_INIT
+
+
+START: 
+	SBI PORTC,5 ;PC5 = 1 1MC
+	LDI R17,TP_H ;nạp TCNT0=TP_H 1MC
+	RCALL TIMER_T0 ;ctc chạy Timer0 3MC
+	CBI PORTC,5 ; PC5 = 0 1MC
+	LDI R17,TP_L ;nạp TCNT0=TP_L 1MC
+	RCALL TIMER_T0 ; 3MC
+RJMP START
+
+
+; INIT timer 0 mode nor
+TIMER_INIT:
+	LDI R17,0X00 ;Timer0 mode NOR 
+	OUT TCCR0A,R17
+	LDI R17,0X00 ;Timer0 mode NOR, dừng
+	OUT TCCR0B,R17
+RET
+
+;lặp vòng lại 2MC
+;------------------------------------------------------------
+; timer nap vao r17
+TIMER_T0: 
+	OUT TCNT0,R17 ; 1MC
+	LDI R17,0X03 ;Timer0 chạy, hệ số chia N=64 1MC
+	OUT TCCR0B,R17 ; 1MC
+	WAIT: SBIS TIFR0,TOV0 ;chờ cờ TOV0=1 báo Timer0 tràn 2/1MC
+	RJMP WAIT ;cờ TOV0=0 tiếp tục chờ 2MC
+	SBI TIFR0,TOV0 ;TOV0=1  xóa cờ TOV0 2MC
+	LDI R17,0X00 ;dừng Timer0 1MC
+	OUT TCCR0B,R17 ; 1MC
+RET

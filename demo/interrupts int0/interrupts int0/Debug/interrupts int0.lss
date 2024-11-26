@@ -1,0 +1,7 @@
+
+AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\demo\interrupts int0\interrupts int0\main.asm Thu Oct 24 09:01:07 2024
+
+[builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324PAdef.inc'
+D:\MICROPROCESSOR\MICROPROCESSOR\demo\interrupts int0\interrupts int0\main.asm(31): error: istor: Unknown instruction or macro
+D:\MICROPROCESSOR\MICROPROCESSOR\demo\interrupts int0\interrupts int0\main.asm(31): error: on: Unknown instruction or macro
+D:\MICROPROCESSOR\MICROPROCESSOR\demo\interrupts int0\interrupts int0\main.asm(31): error: PD2: Unknown instruction or macro

@@ -1,10 +1,10 @@
 
-AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\LAB2_1\lab2_1_3\lab2_1_3\lab2_1_3\main.asm Tue Oct 01 23:36:20 2024
+AVRASM ver. 2.2.8  D:\MICROPROCESSOR\MICROPROCESSOR\LAB2_1\lab2_1_3\lab2_1_3\lab2_1_3\main.asm Wed Oct 02 23:09:03 2024
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324PAdef.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324PAdef.inc'
                                  
-                                 .org	00
+                                 .org 0
                                  
                                  ;***** Created: 2011-02-09 12:03 ******* Source: ATmega324PA.xml *********
                                  ;*************************************************************************

@@ -1,0 +1,51 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega324PA"</DEVICE>
+ <WORKING_DIR>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m324PAdef.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\Debug\hehe.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>hehe.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>hehe.map</FILE>
+  <FILE>hehe.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <INIT_LCD><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>13</LINE></INIT_LCD>
+  <DELAY><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>216</LINE></DELAY>
+  <CMDWRITE><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>183</LINE></CMDWRITE>
+  <CMDWRITE4BIT><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>173</LINE></CMDWRITE4BIT>
+  <main><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>40</LINE></main>
+  <keypad_scan><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>121</LINE></keypad_scan>
+  <notFF><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>56</LINE></notFF>
+  <DATAWRITE4BIT><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>194</LINE></DATAWRITE4BIT>
+  <notF><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>66</LINE></notF>
+  <notE><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>75</LINE></notE>
+  <notD><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>84</LINE></notD>
+  <notC><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>93</LINE></notC>
+  <notB><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>102</LINE></notB>
+  <notA><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>111</LINE></notA>
+  <keypad_scan_loop><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>131</LINE></keypad_scan_loop>
+  <keypad_scan_check_col2><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>137</LINE></keypad_scan_check_col2>
+  <keypad_scan_found><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>162</LINE></keypad_scan_found>
+  <keypad_scan_check_col3><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>142</LINE></keypad_scan_check_col3>
+  <keypad_scan_check_col4><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>147</LINE></keypad_scan_check_col4>
+  <keypad_scan_next_row><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>153</LINE></keypad_scan_next_row>
+  <keypad_scan_not_found><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>169</LINE></keypad_scan_not_found>
+  <DATAWRITE><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>204</LINE></DATAWRITE>
+  <L1><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>217</LINE></L1>
+  <DELAY100US><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>222</LINE></DELAY100US>
+  <L2><FILE>D:\MICROPROCESSOR\MICROPROCESSOR\demo\hehe\hehe\main.asm</FILE><LINE>225</LINE></L2>
+ </LABELS>
+</ASSEMBLER_INFO>
